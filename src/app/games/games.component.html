@@ -29,8 +29,7 @@
                         <div class="row" *ngFor="let score of getScores()">
                             <div class="col-4" [ngClass]="{'order-last': score.homeTeam}">{{ score.player }}</div>
                             <div class="col-4 ">{{ score.type }}</div>
-                            <div class="col-4" [ngClass]="{'order-first': score.homeTeam}"></div>
-                            
+                            <div class="col-4" [ngClass]="{'order-first': score.homeTeam}"></div>    
                         </div>
                     </div>
                 </div>
