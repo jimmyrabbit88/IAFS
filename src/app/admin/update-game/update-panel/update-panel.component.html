@@ -1,0 +1,44 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <h4>Moment Type:</h4>
+            <mat-button-toggle-group name="type" aria-label="Font Style" #momentType="matButtonToggleGroup">
+                <mat-button-toggle value="score">Score</mat-button-toggle>
+                <mat-button-toggle value="end">End of Quarter</mat-button-toggle>
+            </mat-button-toggle-group>
+            <div *ngIf="momentType.value=='end'">
+                <mat-form-field>
+                    <mat-label>End Of</mat-label>
+                    <mat-select [(value)]="quarter">
+                        <mat-option value="1">Q1</mat-option>
+                        <mat-option value="2">Q2</mat-option>
+                        <mat-option value="3">Q3</mat-option>
+                        <mat-option value="4">Q4</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <button class="ml-4" mat-flat-button color="primary">UPDATE</button>
+            </div>
+            <div *ngIf="momentType.value=='score'">
+            <br>
+            <h4>Team:</h4>
+            <mat-button-toggle-group name="homeAway" aria-label="Font Style" #homeAway="matButtonToggleGroup">
+                <mat-button-toggle value="away">Away</mat-button-toggle>
+                <mat-button-toggle value="home">Home</mat-button-toggle>
+            </mat-button-toggle-group>
+            <br>
+            <h4>Score:</h4>
+            <mat-button-toggle-group name="score" aria-label="Font Style" #scoreType="matButtonToggleGroup">
+                <mat-button-toggle value="td">Touchdown</mat-button-toggle>
+                <mat-button-toggle value="fg">Field Goal</mat-button-toggle>
+                <mat-button-toggle value="s">Safety</mat-button-toggle>
+            </mat-button-toggle-group>
+            <br>
+            <app-td-info *ngIf="scoreType.value == 'td'" (onTdDetailsAdded)="onDetailsUpdated($event)"></app-td-info>
+            <app-fg-info *ngIf="scoreType.value == 'fg'"></app-fg-info>
+            <app-s-info *ngIf="scoreType.value == 's'"></app-s-info>
+            <br>
+
+            </div>
+        </div>
+    </div>
+</div>

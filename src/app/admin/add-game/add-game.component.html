@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row">
+        <div class="col-6 justify-content-center">
+            <h2>Home Team</h2>
+            <mat-form-field>
+                <mat-label>Home Team</mat-label>
+                <mat-select [(value)]="homeTeam">
+                    <mat-option *ngFor="let team of teams" value="{{ team.name }}">{{ team.name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Location</mat-label>
+                        <input matInput [(ngModel)]="location">
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field>
+                        <input matInput type="datetime-local" placeholder="Kickoff" [(ngModel)]="localCompleteDate" step="1000">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 justify-content-center">
+            <h2>Away Team</h2>
+            <mat-form-field>
+                <mat-label>Away Team</mat-label>
+                <mat-select [(value)]="awayTeam">
+                    <mat-option *ngFor="let team of teams" value="{{ team.name }}">{{ team.name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-success" (click)="addGame()">Add Game</button>
+        </div>
+    </div>
+</div>

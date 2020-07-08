@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Observable } from 'rxjs';
 import { AngularFirestore } from 'angularfire2/firestore';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-games',
@@ -9,23 +10,28 @@ import { AngularFirestore } from 'angularfire2/firestore';
   styleUrls: ['./games.component.scss']
 })
 export class GamesComponent implements OnInit {
-  public games: Observable<any[]>
-  selectedGame;
+  public games;
+  public game;
+  public selectedGame: boolean = false;
   private scores;
 
-  constructor(public dataService: DataService, db: AngularFirestore) {
-    this.games = db.collection('/items').valueChanges();
-   }
+  constructor(public dataService: DataService, public router: Router) {}
+
+  today: number = Date.now();
 
   ngOnInit(): void {
+    this.getGames();
   }
 
-  public selectGame(game){
-    this.selectedGame = game;
-    this.scores = game.scores;
+  //Return a list of all games
+  public getGames(){
+    this.dataService.getGames().subscribe(res => (this.games = res));
   }
+  
 
-  public getScores(){
-    return this.scores;
+  public selectAGame(game) {
+    this.router.navigate(['/','game', game.payload.doc.data().gameId])
+    this.selectedGame = true;
+    this.dataService.getGame(game.payload.doc.data().gameId).subscribe(res => (this.game = res));
   }
 }

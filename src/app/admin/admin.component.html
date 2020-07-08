@@ -1,0 +1,6 @@
+<mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+    <mat-button-toggle #toggleAdd>Add Game</mat-button-toggle>
+    <mat-button-toggle #toggleUpdate>Update Game</mat-button-toggle>
+</mat-button-toggle-group>
+<app-add-game *ngIf="toggleAdd.checked"></app-add-game>
+<app-update-game *ngIf=toggleUpdate.checked></app-update-game>

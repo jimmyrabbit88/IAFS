@@ -1,47 +1,19 @@
+<app-header></app-header>
 <div class="container mt-5">
     <div class="row">
         <div class="col-sm-12 col-lg-8 ">
-            <div class="row mt-5 bg-light border-top border-dark">
+            <div class="row mt-5 border-top border-dark league-header">
                 SBC
             </div>
-            <div class="row pointer" *ngFor="let game of games | async" (click)="selectGame(game)">
-                <div class="col-1">13:00</div>
-                <div class="col-4 text-right">{{ game.away }}</div>
-                <div>{{ game.awayScore }} : {{ game.homeScore }}</div>
-                <div class="col-4 text-left">{{ game.home }}</div>
+            <div class="row pointer border-bottom py-3" 
+            *ngFor="let game of games" 
+            (click)="selectAGame(game)">
+                <div class="col-2 border-right">{{ game.payload.doc.data().ko.toDate() | date: 'HH:mm' }}</div>
+                <div class="col-4 text-right">{{ game.payload.doc.data().away.name }} <img src="../../assets/images/{{ game.payload.doc.data().away.logo }}" alt="" width="25" height="25"></div>
+                <div>{{ game.payload.doc.data().away.score }} : {{ game.payload.doc.data().home.score }}</div>
+                <div class="col-4 text-left"> <img src="../../assets/images/{{ game.payload.doc.data().home.logo }}" alt="" width="25" height="25">{{ game.payload.doc.data().home.name }}</div>
             </div>
         </div>
-        <div class="col-sm-12 col-md-8 col-lg-4" >
-            <div class="card text-center mt-5" *ngIf="selectedGame">
-                <div class="card-header">
-                    {{ selectedGame.away }} @ {{ selectedGame.home }}
-                </div>
-                <div class="card-block">
-                    <h4 class="card-title">{{ selectedGame.awayScore }} - {{  selectedGame.homeScore  }}</h4>
-                    <div class="card-text">
-                        <!-- <table class="table">
-                            <tbody>
-                                <tr *ngFor="let score of selectedGame.scores">
-                                    <td [ngClass]="{'text-right':score.homeTeam === true, 'text-left':score.homeTeam === false}">{{ score.player }}</td>
-                                </tr>
-                            </tbody>
-                        </table> -->
-                        <div class="row" *ngFor="let score of getScores()">
-                            <div class="col-4" [ngClass]="{'order-last': score.homeTeam}">{{ score.player }}</div>
-                            <div class="col-4 ">{{ score.type }}</div>
-                            <div class="col-4" [ngClass]="{'order-first': score.homeTeam}"></div>    
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
     </div>
-    <!-- <div>
-        <p>here</p>
-        <ul>
-            <li *ngFor="let item of items | async">
-                <pre>{{ item | json }}</pre>
-            </li>
-        </ul>
-    </div> -->
 </div>

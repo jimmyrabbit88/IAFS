@@ -1,25 +1,55 @@
 import { Injectable } from '@angular/core';
+import { AngularFirestore } from 'angularfire2/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  games = [
-    {home:"Cork Admirals", away: "Dublin Rebels", location:"PBC Cork", date:'10-9-20', ko:"1300", score: "7-21"},
-    {home:"UL VIkings", away: "Belfast Knights", location:"UL Limerick", date:'10-9-20', ko:"1300", score: "10-14"},
-    {home:"Belfast Trojans", away: "Dublin Rhinos", location:"Belfast", date:'10-9-20', ko:"1300", score: "21-10"},
-    {home:"Home", away: "Away", location:"default", date:'17-9-20', ko:"1300", score: "00-00"},
-    {home:"Home", away: "Away", location:"default", date:'17-9-20', ko:"1300", score: "00-00"},
-    {home:"Home", away: "Away", location:"default", date:'17-9-20', ko:"1300", score: "00-00"},
-    {home:"Home", away: "Away", location:"default", date:'17-9-20', ko:"1300", score: "00-00"},
-    {home:"Home", away: "Away", location:"default", date:'17-9-20', ko:"1300", score: "00-00"},
-    {home:"Home", away: "Away", location:"default", date:'17-9-20', ko:"1300", score: "00-00"},
-  ]
+  public games;
 
-  constructor() { }
+  constructor(private db: AngularFirestore) {
+   }
 
-  public getGamesWithScore(): Array<{home, away, location, date, ko, score}>{
-    return this.games;
-  }   
+  public getGames(){
+    return this.db.collection("items").snapshotChanges();
+  }
+
+  public getGame(key){
+    return this.db.collection("items", ref => ref.where('gameId', '==', key)).snapshotChanges();
+  }
+
+  public getGameIncidents(key){
+    return this.db.collection("gameIncidents", ref => ref.where('gameId', '==', key)).snapshotChanges();
+  }
+
+  public check() {
+    console.log(this.games[0]);
+  }
+
+
+  public addGame(data) {
+    return new Promise<any>((resolve, reject) =>{
+        this.db
+            .collection("items")
+            .add(data)
+            .then(res => {}, err => reject(err));
+    });
+  }
+
+  public addGameIncidents(data) {
+    return new Promise<any>((resolve, reject) =>{
+        this.db
+            .collection("gameIncidents")
+            .add(data)
+            .then(res => {}, err => reject(err));
+    });
+  }
+
+  public nextId(){
+    return this.db
+      .collection("items")
+      .valueChanges()
+  }
+  
 }

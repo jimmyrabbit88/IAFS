@@ -1,0 +1,12 @@
+<div *ngIf="!selected">
+    <div class="row pointer border-bottom py-3" 
+    *ngFor="let game of games" 
+    (click)="updateAGame(game)">
+        <div class="col-4 text-right">{{ game.payload.doc.data().away.name }} <img src="../../assets/images/{{ game.payload.doc.data().away.logo }}" alt="" width="25" height="25"></div>
+        <div>{{ game.payload.doc.data().away.score }} : {{ game.payload.doc.data().home.score }}</div>
+        <div class="col-4 text-left"> <img src="../../assets/images/{{ game.payload.doc.data().home.logo }}" alt="" width="25" height="25">{{ game.payload.doc.data().home.name }}</div>
+    </div>
+</div>
+<div *ngIf="selected">
+    <app-update-panel></app-update-panel>
+</div>

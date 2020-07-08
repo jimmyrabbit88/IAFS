@@ -1,0 +1,34 @@
+<mat-form-field>
+    <mat-label>Type</mat-label>
+    <mat-select [(value)]="tdType">
+        <mat-option value="pass">Pass</mat-option>
+        <mat-option value="run">Run</mat-option>
+        <mat-option value="p6">Pick 6</mat-option>
+        <mat-option value="f6">Fumble</mat-option>
+        <mat-option value="pr">Punt Return</mat-option>
+        <mat-option value="kr">Kick Return</mat-option>
+    </mat-select>
+</mat-form-field>
+<br>
+<mat-form-field>
+    <mat-label>Player</mat-label>
+    <input matInput [(ngModel)]="player">
+</mat-form-field>
+<mat-form-field>
+    <mat-label>Player #</mat-label>
+    <input matInput type="number" [(ngModel)]="playerNum">
+</mat-form-field>
+<br>
+<mat-form-field>
+    <mat-label>Distance</mat-label>
+    <input matInput type="number" [(ngModel)]="distance">
+</mat-form-field>
+<br>
+<div *ngIf="tdType=='pass'">
+    <mat-form-field>
+        <mat-label>Passer</mat-label>
+        <input matInput [(ngModel)]="passer">
+    </mat-form-field>
+</div>
+<br>
+<button class="ml-4" mat-flat-button color="primary" (click)="addScore()">ADD</button>
