@@ -1,4 +1,9 @@
-<div class="container mt-5">
+<div class="container mt-2">
+    <div class="row">
+        <div class="col">
+            <app-title *ngFor="let game of games" [gameTitle]="game"></app-title>
+        </div>
+    </div>
     <div class="row">
         <div class="col">
             <h4>Moment Type:</h4>
@@ -21,20 +26,20 @@
             <div *ngIf="momentType.value=='score'">
             <br>
             <h4>Team:</h4>
-            <mat-button-toggle-group name="homeAway" aria-label="Font Style" #homeAway="matButtonToggleGroup">
-                <mat-button-toggle value="away">Away</mat-button-toggle>
-                <mat-button-toggle value="home">Home</mat-button-toggle>
+            <mat-button-toggle-group name="homeAway" aria-label="Font Style" [(ngModel)]="isHomeTeam">
+                <mat-button-toggle [value]=false>Away</mat-button-toggle>
+                <mat-button-toggle [value]=true>Home</mat-button-toggle>
             </mat-button-toggle-group>
             <br>
             <h4>Score:</h4>
-            <mat-button-toggle-group name="score" aria-label="Font Style" #scoreType="matButtonToggleGroup">
-                <mat-button-toggle value="td">Touchdown</mat-button-toggle>
-                <mat-button-toggle value="fg">Field Goal</mat-button-toggle>
+            <mat-button-toggle-group name="score" aria-label="Font Style" [(ngModel)]="score" #scoreType="matButtonToggleGroup">
+                <mat-button-toggle [value]=ScoreType.TD>Touchdown</mat-button-toggle>
+                <mat-button-toggle [value]=ScoreType.FG>Field Goal</mat-button-toggle>
                 <mat-button-toggle value="s">Safety</mat-button-toggle>
             </mat-button-toggle-group>
             <br>
-            <app-td-info *ngIf="scoreType.value == 'td'" (onTdDetailsAdded)="onDetailsUpdated($event)"></app-td-info>
-            <app-fg-info *ngIf="scoreType.value == 'fg'"></app-fg-info>
+            <app-td-info *ngIf="scoreType.value == ScoreType.TD" (onTdDetailsAdded)="onDetailsUpdated($event)"></app-td-info>
+            <app-fg-info *ngIf="scoreType.value == ScoreType.FG" (onFgDetailsAdded)="onDetailsUpdated($event)"></app-fg-info>
             <app-s-info *ngIf="scoreType.value == 's'"></app-s-info>
             <br>
 

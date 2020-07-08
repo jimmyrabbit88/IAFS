@@ -1,6 +1,11 @@
 <div class="row justify-content-center">
-    <div class="col-sm-12 col-lg-8 pt-5">
-        
+    <div class="col-sm-12 col-lg-8">
+        <div class="row bg-success">
+            <div class="col-2">
+            <a routerLink="/home"><mat-icon class="backArrow">keyboard_backspace</mat-icon></a>
+            </div>
+            <!-- add in league name and start date and time -->
+        </div>
         <app-title *ngFor="let game of gameOverview" [gameTitle]="game"></app-title>
 
         <div class="row justify-content-center px-4 pb-3 bg-success text-white">
@@ -14,37 +19,10 @@
         <ng-container *ngIf="details">
             <app-details *ngFor="let inc of gameIncidents" [gameDetails]="inc"></app-details>
         </ng-container>
+        
         <app-stats *ngIf="stats"></app-stats>
         <app-lineups *ngIf="lineups"></app-lineups>
         <app-social *ngIf="social"></app-social>
         <app-standings *ngIf="standings"></app-standings>
-
-
-
-
     </div>
 </div>
-<!-- <div class="container">
-    <div class="row mt-5">
-        <div class="col-sm-12 col-md-9 col-lg-6">
-            <div class="card text-center mt-5" *ngFor="let game of gameOverview">
-                <div class="card-header bg-success">
-                    {{ game.payload.doc.data().away.name }} @ {{ game.payload.doc.data().home.name }}
-                </div>
-                <div class="card-block">
-                    <h4 class="card-title">{{ game.payload.doc.data().away.score }} - {{  game.payload.doc.data().home.score  }}</h4>
-                    <div class="card-text" *ngFor="let game of gameIncidents">
-                        <div *ngFor="let inc of game.payload.doc.data().moments">
-                            <div class="row">
-                                <div class=" coll-2 bg-primary">{{ inc.distance }}</div>
-                                <div class=" coll-2 bg-primary">{{ inc.player }}</div>
-                                <div class=" coll-2 bg-primary">{{ inc.type }}</div>
-                                <div class=" coll-2 bg-primary">{{ inc.score }}</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->

@@ -24,6 +24,5 @@ export class UpdateGameComponent implements OnInit {
   public updateAGame(game){
     this.gameId = game.payload.doc.data().gameId;
     this.selected = true;
-    console.log(this.gameId)
   }
 }

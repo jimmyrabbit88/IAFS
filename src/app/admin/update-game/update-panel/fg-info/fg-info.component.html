@@ -1,2 +1,21 @@
-
+<mat-form-field>
+    <mat-label>Player</mat-label>
+    <input matInput [(ngModel)]="player">
+</mat-form-field>
+<mat-form-field>
+    <mat-label>Player #</mat-label>
+    <input matInput type="number" [(ngModel)]="playerNum">
+</mat-form-field>
+<br>
+<mat-form-field>
+    <mat-label>Distance</mat-label>
+    <input matInput type="number" [(ngModel)]="distance">
+</mat-form-field>
+<br>
+<mat-button-toggle-group name="isMade" aria-label="Font Style" [(ngModel)]="isMadeFg">
+    <mat-button-toggle [value]=false>Missed</mat-button-toggle>
+    <mat-button-toggle [value]=true>Made</mat-button-toggle>
+</mat-button-toggle-group>
+<br>
+<button class="ml-4" mat-flat-button color="primary" (click)="addScore()">ADD</button>
 

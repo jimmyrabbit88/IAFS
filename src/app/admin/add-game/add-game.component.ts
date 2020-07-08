@@ -50,8 +50,7 @@ export class AddGameComponent implements OnInit {
       ko: time
     };
     this.gameIncidents = {
-      gameId: this.nextId,
-      moments: [{}]
+      gameId: this.nextId
     }
     this.data.addGame(this.game);
     this.data.addGameIncidents(this.gameIncidents);
