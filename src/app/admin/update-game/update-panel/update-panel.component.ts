@@ -3,6 +3,7 @@ import { DataService } from 'src/app/data.service';
 
 import { ScoreType } from 'src/app/shared/score-type.enum'
 import { firestore } from 'firebase';
+import { ScoreDetails } from 'src/app/shared/score-details.model';
 
 @Component({
   selector: 'app-update-panel',
@@ -42,6 +43,20 @@ export class UpdatePanelComponent implements OnInit {
   public onDetailsUpdated(eventData){
     this.addScore(this.isHomeTeam, this.score, this.game);
     
+    const momentElem = new ScoreDetails(
+      this.isHomeTeam, 
+      this.score, 
+      this.newScore,
+      firestore.Timestamp.now(),
+      eventData.player, 
+      eventData.playerNum,
+      eventData.distance,
+      eventData.scoreDetail,
+      eventData.passer,
+      )
+
+    console.log(momentElem.player)
+
     this.momentElement = {
       "homeTeam": this.isHomeTeam,
       "type": this.score,
@@ -54,7 +69,7 @@ export class UpdatePanelComponent implements OnInit {
       "time" : firestore.Timestamp.now()
     }
 
-    this.ds.updateMoment(this.gameInc, this.momentElement);
+    this.ds.updateMoment(this.gameInc, momentElem);
   }
 
   public addScore(isHomeTeam: boolean, score: number, gameId: string){
