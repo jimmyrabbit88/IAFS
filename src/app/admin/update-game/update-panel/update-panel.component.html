@@ -35,12 +35,12 @@
             <mat-button-toggle-group name="score" aria-label="Font Style" [(ngModel)]="score" #scoreType="matButtonToggleGroup">
                 <mat-button-toggle [value]=ScoreType.TD>Touchdown</mat-button-toggle>
                 <mat-button-toggle [value]=ScoreType.FG>Field Goal</mat-button-toggle>
-                <mat-button-toggle value="s">Safety</mat-button-toggle>
+                <mat-button-toggle [value]=ScoreType.SAFETY>Safety</mat-button-toggle>
             </mat-button-toggle-group>
             <br>
-            <app-td-info *ngIf="scoreType.value == ScoreType.TD" (onTdDetailsAdded)="onDetailsUpdated($event)"></app-td-info>
-            <app-fg-info *ngIf="scoreType.value == ScoreType.FG" (onFgDetailsAdded)="onDetailsUpdated($event)"></app-fg-info>
-            <app-s-info *ngIf="scoreType.value == 's'"></app-s-info>
+            <app-td-info *ngIf="scoreType.value == ScoreType.TD" (onTdDetailsAdded)="onTdAdded($event)"></app-td-info>
+            <app-fg-info *ngIf="scoreType.value == ScoreType.FG" (onFgDetailsAdded)="onFgAdded($event)"></app-fg-info>
+            <app-s-info *ngIf="scoreType.value == ScoreType.SAFETY" (onSDetailsAdded)="onSAdded($event)"></app-s-info>
             <br>
 
             </div>

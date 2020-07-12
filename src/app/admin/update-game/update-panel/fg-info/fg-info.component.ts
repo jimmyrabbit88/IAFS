@@ -10,7 +10,7 @@ export class FgInfoComponent implements OnInit {
   player: string;
   playerNum: number;
   isMadeFg: boolean;
-  @Output() onTdDetailsAdded = new EventEmitter<{tdType?: string, player?: string, playerNum?: number, passer?: string, distance?: number, isMadeFg?: boolean}>();
+  @Output() onFgDetailsAdded = new EventEmitter<{tdType?: string, player?: string, playerNum?: number, distance?: number, isMadeFg?: boolean}>();
 
 
   constructor() { }
@@ -20,7 +20,7 @@ export class FgInfoComponent implements OnInit {
 
   public addScore(){
     console.log('aa')
-    this.onTdDetailsAdded.emit({player: this.player, playerNum: this.playerNum, distance: this.distance, isMadeFg: this.isMadeFg })
+    this.onFgDetailsAdded.emit({player: this.player, playerNum: this.playerNum, distance: this.distance, isMadeFg: this.isMadeFg })
   }
 
 }

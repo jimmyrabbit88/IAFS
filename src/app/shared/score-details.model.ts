@@ -10,6 +10,11 @@ export class ScoreDetails {
         public playerNum?: number,
         public distance?: number,
         public scoreDetail?: string,
-        public passer?: string
+        public passer?: string,
+        public isMadeFg?: boolean,
+        public xpmade?: boolean,
+        public tptMade?: boolean,
+        public ptaPlayer?: string,
+        public ptaPlayerNum?: number
     ){}
 }

@@ -9,7 +9,7 @@ import { DataService } from 'src/app/data.service';
 export class UpdateGameComponent implements OnInit {
   public games;
   public selected;
-  private gameId;
+  public gameId;
 
   constructor(public dataService: DataService) { }
 

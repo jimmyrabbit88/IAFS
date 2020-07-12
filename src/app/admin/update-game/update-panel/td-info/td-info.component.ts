@@ -11,7 +11,10 @@ export class TdInfoComponent implements OnInit {
   player: string;
   playerNum: number;
   passer: string;
-  @Output() onTdDetailsAdded = new EventEmitter<{tdType?: string, player?: string, playerNum?: number, passer?: string, distance?: number}>();
+  ptAfter: number;
+  ptaPlayer: string;
+  ptaPlayerNum: number;
+  @Output() onTdDetailsAdded = new EventEmitter<{tdType?: string, player?: string, playerNum?: number, passer?: string, distance?: number, ptAfter: number, ptaPlayer: string, ptaPlayerNum: number}>();
 
   constructor() { }
 
@@ -20,7 +23,7 @@ export class TdInfoComponent implements OnInit {
 
   public addScore(){
     console.log('aa')
-    this.onTdDetailsAdded.emit({tdType: this.tdType, player: this.player, playerNum: this.playerNum, passer: this.passer, distance: this.distance })
+    this.onTdDetailsAdded.emit({tdType: this.tdType, player: this.player, playerNum: this.playerNum, passer: this.passer, distance: this.distance, ptAfter: this.ptAfter, ptaPlayer: this.ptaPlayer, ptaPlayerNum: this.ptaPlayerNum })
   }
 
 }
