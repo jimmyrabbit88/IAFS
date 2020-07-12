@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-s-info',
@@ -6,10 +6,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./s-info.component.scss']
 })
 export class SInfoComponent implements OnInit {
+  distance: number;
+  player: string;
+  playerNum: number;
+  isMadeFg: boolean;
+  @Output() onSDetailsAdded = new EventEmitter<{tdType?: string, player?: string, playerNum?: number}>();
+
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  public addScore(){
+    console.log('aa')
+    this.onSDetailsAdded.emit({player: this.player, playerNum: this.playerNum})
   }
 
 }

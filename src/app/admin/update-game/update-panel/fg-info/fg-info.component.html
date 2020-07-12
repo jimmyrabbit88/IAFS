@@ -17,5 +17,5 @@
     <mat-button-toggle [value]=true>Made</mat-button-toggle>
 </mat-button-toggle-group>
 <br>
-<button class="ml-4" mat-flat-button color="primary" (click)="addScore()">ADD</button>
+<button class="ml-4" mat-flat-button color="primary" *ngIf="isMadeFg!=null" (click)="addScore()">ADD</button>
 

@@ -31,4 +31,22 @@
     </mat-form-field>
 </div>
 <br>
-<button class="ml-4" mat-flat-button color="primary" (click)="addScore()">ADD</button>
+<mat-button-toggle-group name="ptAfter" aria-label="Font Style" [(ngModel)]="ptAfter">
+    <mat-button-toggle [value]=1>Made XP</mat-button-toggle>
+    <mat-button-toggle [value]=0>Missed XP</mat-button-toggle>
+    <mat-button-toggle [value]=2>Made 2pt</mat-button-toggle>
+    <mat-button-toggle [value]=3>Missed 2pt</mat-button-toggle>
+</mat-button-toggle-group>
+<div *ngIf="ptAfter==1 || ptAfter==2">
+    <br>
+    <mat-form-field>
+        <mat-label>Player</mat-label>
+        <input matInput [(ngModel)]="ptaPlayer">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Player #</mat-label>
+        <input matInput type="number" [(ngModel)]="ptaPlayerNum">
+    </mat-form-field>
+</div>
+<br>
+<button class="ml-4" mat-flat-button color="primary" *ngIf="ptAfter!=null" (click)="addScore()">ADD</button>

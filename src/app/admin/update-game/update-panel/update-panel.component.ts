@@ -4,6 +4,7 @@ import { DataService } from 'src/app/data.service';
 import { ScoreType } from 'src/app/shared/score-type.enum'
 import { firestore } from 'firebase';
 import { ScoreDetails } from 'src/app/shared/score-details.model';
+import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-update-panel',
@@ -16,6 +17,8 @@ export class UpdatePanelComponent implements OnInit {
   @Input() gameId;
 
   ScoreType = ScoreType;
+  private xpMade: boolean;
+  private tptMade: boolean;
 
   game;
   games;
@@ -30,7 +33,6 @@ export class UpdatePanelComponent implements OnInit {
   constructor( public ds: DataService) { }
 
   ngOnInit(): void {
-    //console.log(this.gameId)
     this.ds.getGame(this.gameId).subscribe(gameResult => {
       this.game = gameResult[0];
       this.games = gameResult;
@@ -40,8 +42,34 @@ export class UpdatePanelComponent implements OnInit {
     })
   }
 
-  public onDetailsUpdated(eventData){
+  public onTdAdded(eventData){
+
+    switch(eventData.ptAfter) { 
+      case 0: { 
+         this.xpMade = false; 
+         break; 
+      } 
+      case 1: { 
+        this.xpMade = true;
+        this.score = 7;
+        break; 
+      }
+      case 2: { 
+        this.tptMade = true;
+        this.score = 8; 
+        break; 
+      }
+      case 3: { 
+        this.xpMade = false; 
+        break; 
+      } 
+      default: {  
+         break; 
+      } 
+   } 
     this.addScore(this.isHomeTeam, this.score, this.game);
+
+
     
     const momentElem = new ScoreDetails(
       this.isHomeTeam, 
@@ -51,25 +79,75 @@ export class UpdatePanelComponent implements OnInit {
       eventData.player, 
       eventData.playerNum,
       eventData.distance,
-      eventData.scoreDetail,
+      eventData.tdType,
       eventData.passer,
-      )
+      eventData.isMadeFg,
+      this.xpMade,
+      this.tptMade,
+      eventData.ptaPlayer,
+      eventData.ptaPlayerNum
 
-    console.log(momentElem.player)
+      
+      );
 
-    this.momentElement = {
-      "homeTeam": this.isHomeTeam,
-      "type": this.score,
-      "player" : eventData.player ? eventData.player : null,
-      "playerNum" : eventData.playerNum ? eventData.playerNum : null,
-      "distance" : eventData.distance ? eventData.distance : null,
-      "scoreDetail": eventData.tdType ? eventData.tdType : null,
-      "passer" : eventData.passer ? eventData.passer: null,
-      "score" : this.newScore,
-      "time" : firestore.Timestamp.now()
+    this.ds.updateMoment(this.gameInc, Object.assign({}, momentElem));
+  }
+
+  public onFgAdded(eventData){
+    let typeOfScore: string;
+    
+    if(eventData.isMadeFg){
+      this.addScore(this.isHomeTeam, this.score, this.game);
+      typeOfScore = "FG Made"
+    }
+    else{
+      this.addScore(this.isHomeTeam, 0, this.game);
+      typeOfScore = "FG Missed"
     }
 
-    this.ds.updateMoment(this.gameInc, momentElem);
+    const momentElem = new ScoreDetails(
+      this.isHomeTeam, 
+      this.score, 
+      this.newScore,
+      firestore.Timestamp.now(),
+      eventData.player, 
+      eventData.playerNum,
+      eventData.distance,
+      typeOfScore,
+      eventData.passer,
+      eventData.isMadeFg,
+      this.xpMade,
+      this.tptMade,
+      eventData.ptaPlayer,
+      eventData.ptaPlayerNum
+      );
+
+      this.ds.updateMoment(this.gameInc, Object.assign({}, momentElem));
+  }
+
+  public onSAdded(eventData){
+    let typeOfScore: string = "Safety";
+    
+    this.addScore(this.isHomeTeam, this.score, this.game);
+  
+    const momentElem = new ScoreDetails(
+      this.isHomeTeam, 
+      this.score, 
+      this.newScore,
+      firestore.Timestamp.now(),
+      eventData.player, 
+      eventData.playerNum,
+      eventData.distance,
+      typeOfScore,
+      eventData.passer,
+      eventData.isMadeFg,
+      this.xpMade,
+      this.tptMade,
+      eventData.ptaPlayer,
+      eventData.ptaPlayerNum
+      );
+
+      this.ds.updateMoment(this.gameInc, Object.assign({}, momentElem));
   }
 
   public addScore(isHomeTeam: boolean, score: number, gameId: string){

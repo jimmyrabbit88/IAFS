@@ -10,6 +10,9 @@ export class DataService {
   public games;
 
   constructor(private db: AngularFirestore) {
+    db.firestore.settings({
+      ignoreUndefinedProperties: true,
+    })
    }
 
   public getGames(){

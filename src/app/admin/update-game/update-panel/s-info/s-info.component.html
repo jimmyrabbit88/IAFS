@@ -1,1 +1,10 @@
-<p>s-info works!</p>
+<mat-form-field>
+    <mat-label>Player</mat-label>
+    <input matInput [(ngModel)]="player">
+</mat-form-field>
+<mat-form-field>
+    <mat-label>Player #</mat-label>
+    <input matInput type="number" [(ngModel)]="playerNum">
+</mat-form-field>
+<br>
+<button class="ml-4" mat-flat-button color="primary" (click)="addScore()">ADD</button>
