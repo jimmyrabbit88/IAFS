@@ -1,9 +1,34 @@
-<div class="bg-success game-header text-center py-4 text-white" >
-    {{ game.away.name }}
-    <img src="../../../../assets/images/{{ game.away.logo }}" alt="" width="70" height="70">
-    {{ game.away.score }}
-    :
-    {{ game.home.score }}
-    <img src="../../../../assets/images/{{ game.home.logo }}" alt="" width="70" height="70">
-    {{ game.home.name }}
+<div class="row game-header text-center p-1 title align-middle sticky-top" >
+    <div class="col">
+        <div class="row">
+            <div class="col border-bottom bg-light">
+                Shamrock Bowl Conference
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+                {{ game.away.name }}
+                <br>
+                <span class="record">(1-2)</span>
+            </div>
+            <div class="col-1">
+                <img src="../../../../assets/images/{{ game.away.logo }}" alt="" width="40" height="40">
+            </div>
+            <div class="col-1 score">
+                <span class="align-text-bottom">{{ game.away.score }}</span>
+            </div>
+            <div class="col-4 score">
+                <span class="align-text-bottom">:</span>
+            </div>
+            <div class="col-1 score">
+                <span class="align-text-bottom">{{ game.home.score }}</span>
+            </div>
+            <div class="col-1">
+                <img src="../../../../assets/images/{{ game.home.logo }}" alt="" width="40" height="40">
+            </div>
+            <div class="col-2">
+                {{ game.home.name }}
+            </div>
+        </div>
+    </div>
 </div>

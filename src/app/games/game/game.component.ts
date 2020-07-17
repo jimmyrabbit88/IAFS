@@ -36,37 +36,4 @@ export class GameComponent implements OnInit {
   public getGameIncidents(){
     this.dataService.getGameIncidents(this.gameId).subscribe(res => (this.gameIncidents = res));
   }
-
-  public resetComponentShown(){
-    this.details = false;
-    this.stats = false;
-    this.lineups = false;
-    this.social = false;
-    this.standings = false;
-  }
-
-  public showDetails(){
-    this.resetComponentShown();
-    this.details = true;
-  }
-
-  public showStats(){
-    this.resetComponentShown();
-    this.stats = true;
-  }
-
-  public showLineups(){
-    this.resetComponentShown();
-    this.lineups = true;
-  }
-
-  public showSocial(){
-    this.resetComponentShown();
-    this.social = true;
-  }
-
-  public showStandings(){
-    this.resetComponentShown();
-    this.standings = true;
-  }
 }

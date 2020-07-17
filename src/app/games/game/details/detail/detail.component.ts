@@ -7,6 +7,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class DetailComponent implements OnInit {
   @Input() detail;
+  @Input() home;
+  @Input() away;
   constructor() { }
 
   ngOnInit(): void {

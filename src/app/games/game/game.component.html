@@ -1,6 +1,6 @@
 <div class="row justify-content-center">
     <div class="col-sm-12 col-lg-8">
-        <div class="row bg-success">
+        <div class="row top-bar">
             <div class="col-2">
             <a routerLink="/home"><mat-icon class="backArrow">keyboard_backspace</mat-icon></a>
             </div>
@@ -8,21 +8,32 @@
         </div>
         <app-title *ngFor="let game of gameOverview" [gameTitle]="game"></app-title>
 
-        <div class="row justify-content-center px-4 pb-3 bg-success text-white">
+        <!-- <div class="row justify-content-center px-4 pb-3 bg-white">
             <div class="col"><a (click)="showDetails()">Details</a></div>
             <div class="col"><a (click)="showStats()">Stats</a></div>
             <div class="col text-center"><a (click)="showLineups()">Lineups</a></div>
             <div class="col text-center"><a (click)="showSocial()">Social</a></div>
             <div class="col justify-content-center"><a (click)="showStandings()">Standings</a></div>
+        </div> -->
+        <div class="mt-2">
+            <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+                <mat-button-toggle #toggleDetails checked>Details</mat-button-toggle>
+                <mat-button-toggle #toggleStats>Stats</mat-button-toggle>
+                <mat-button-toggle #toggleLineups>LineUps</mat-button-toggle>
+                <mat-button-toggle #toggleSocial>Social</mat-button-toggle>
+                <mat-button-toggle #toggleStandings>Standings</mat-button-toggle>
+            </mat-button-toggle-group>
         </div>
 
-        <ng-container *ngIf="details">
-            <app-details *ngFor="let inc of gameIncidents" [gameDetails]="inc"></app-details>
-        </ng-container>
+        <div class="bg-white rounded">
+            <ng-container *ngIf="toggleDetails.checked">
+                <app-details *ngFor="let inc of gameIncidents" [gameDetails]="inc" [game]="gameOverview"></app-details>
+            </ng-container>
+        </div>
         
-        <app-stats *ngIf="stats"></app-stats>
-        <app-lineups *ngIf="lineups"></app-lineups>
-        <app-social *ngIf="social"></app-social>
-        <app-standings *ngIf="standings"></app-standings>
+        <app-stats *ngIf="toggleStats.checked"></app-stats>
+        <app-lineups *ngIf="toggleLineups.checked"></app-lineups>
+        <app-social *ngIf="toggleSocial.checked"></app-social>
+        <app-standings *ngIf="toggleStandings.checked"></app-standings>
     </div>
 </div>

@@ -7,11 +7,16 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class DetailsComponent implements OnInit {
   @Input() gameDetails;
+  @Input() game;
   details
+  homeLogo;
+  awayLogo;
   constructor() { }
 
   ngOnInit(): void {
     this.details = this.gameDetails.payload.doc.data();
+    this.homeLogo = this.game[0].payload.doc.data().home.logo;
+    this.awayLogo = this.game[0].payload.doc.data().away.logo;
   }
 
 }

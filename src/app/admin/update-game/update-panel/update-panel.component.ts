@@ -43,34 +43,10 @@ export class UpdatePanelComponent implements OnInit {
   }
 
   public onTdAdded(eventData){
-
-    switch(eventData.ptAfter) { 
-      case 0: { 
-         this.xpMade = false; 
-         break; 
-      } 
-      case 1: { 
-        this.xpMade = true;
-        this.score = 7;
-        break; 
-      }
-      case 2: { 
-        this.tptMade = true;
-        this.score = 8; 
-        break; 
-      }
-      case 3: { 
-        this.xpMade = false; 
-        break; 
-      } 
-      default: {  
-         break; 
-      } 
-   } 
+    this.setPointAfterValues(eventData.ptAfter);
+    
     this.addScore(this.isHomeTeam, this.score, this.game);
 
-
-    
     const momentElem = new ScoreDetails(
       this.isHomeTeam, 
       this.score, 
@@ -86,8 +62,6 @@ export class UpdatePanelComponent implements OnInit {
       this.tptMade,
       eventData.ptaPlayer,
       eventData.ptaPlayerNum
-
-      
       );
 
     this.ds.updateMoment(this.gameInc, Object.assign({}, momentElem));
@@ -166,5 +140,31 @@ export class UpdatePanelComponent implements OnInit {
       away = away + score;
     }
     this.newScore = (away + " : " + home);
+  }
+
+  public setPointAfterValues(pa):void {
+    switch(pa) { 
+      case 0: { 
+         this.xpMade = false; 
+         break; 
+      } 
+      case 1: { 
+        this.xpMade = true;
+        this.score = 7;
+        break; 
+      }
+      case 2: { 
+        this.tptMade = true;
+        this.score = 8; 
+        break; 
+      }
+      case 3: { 
+        this.xpMade = false; 
+        break; 
+      } 
+      default: {  
+         break; 
+      } 
+   } 
   }
 }
