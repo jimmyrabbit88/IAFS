@@ -1,5 +1,37 @@
+<div class="row m-2 rounded">
+    <table class="table table-sm">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">1</th>
+            <th scope="col">2</th>
+            <th scope="col">3</th>
+            <th scope="col">4</th>
+            <th scope="col">T</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Cork Admirals</th>
+            <td>7</td>
+            <td>10</td>
+            <td>7</td>
+            <td>0</td>
+            <td>24</td>
+          </tr>
+          <tr>
+            <th scope="row">UL Vikings</th>
+            <td>0</td>
+            <td>3</td>
+            <td>10</td>
+            <td>3</td>
+            <td>16</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
 <div *ngFor="let detail of details.moments">
-    <app-detail [detail]="detail"></app-detail>
+    <app-detail [detail]="detail" [home]="homeLogo" [away]="awayLogo"></app-detail>
 </div>
 
 <!-- <p>

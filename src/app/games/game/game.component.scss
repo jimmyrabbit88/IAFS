@@ -5,3 +5,13 @@
     font-size: 3rem;
     color: white;
 }
+
+.top-bar{
+    background: rgb(3,163,21);
+    background: linear-gradient(120deg, rgba(3,163,21,1) 23%, rgba(26,121,9,1) 37%, rgba(0,0,0,1) 62%);
+}
+
+.mat-button-toggle-checked{
+    border-bottom: 5px solid rgba(26,121,9,1);
+}
+

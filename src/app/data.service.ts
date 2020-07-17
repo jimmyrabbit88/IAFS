@@ -79,10 +79,6 @@ export class DataService {
       .collection("gameIncidents")
       .doc(game.payload.doc.id)
       .update({moments : firebase.firestore.FieldValue.arrayUnion(moment)});
-  }
-    
-    
-    
-    
+  }  
   
 }
