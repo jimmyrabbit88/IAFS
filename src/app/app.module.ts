@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireModule } from 'angularfire2'
+import { AngularFireAuthModule } from 'angularfire2/auth'
 import { MatIconModule } from '@angular/material/icon'
 
 import { AppRoutingModule } from './app-routing.module';
@@ -29,6 +30,7 @@ import { UpdatePanelComponent } from './admin/update-game/update-panel/update-pa
 import { TdInfoComponent } from './admin/update-game/update-panel/td-info/td-info.component';
 import { FgInfoComponent } from './admin/update-game/update-panel/fg-info/fg-info.component';
 import { SInfoComponent } from './admin/update-game/update-panel/s-info/s-info.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,7 @@ import { SInfoComponent } from './admin/update-game/update-panel/s-info/s-info.c
     UpdatePanelComponent,
     TdInfoComponent,
     FgInfoComponent,
-    SInfoComponent
+    SInfoComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,8 +60,10 @@ import { SInfoComponent } from './admin/update-game/update-panel/s-info/s-info.c
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    AngularFireAuthModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]
