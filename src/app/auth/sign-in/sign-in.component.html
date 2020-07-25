@@ -1,0 +1,21 @@
+<h3>Login</h3>
+<div class="row justify-content-center">
+    <div class="col-6 align-self-center">
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput [(ngModel)]="email">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input type="password" matInput [(ngModel)]="password">
+        </mat-form-field>
+        <br>
+    </div>
+    <button class="btn btn-success w-100" (click)="login()">Sign In</button>
+</div>
+<div class="row">
+    <div class="col">
+        <p><a (click)="goToReg()">Click here</a> to register an accout with IAFS</p>
+    </div>
+</div>

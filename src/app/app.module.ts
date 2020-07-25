@@ -31,6 +31,9 @@ import { TdInfoComponent } from './admin/update-game/update-panel/td-info/td-inf
 import { FgInfoComponent } from './admin/update-game/update-panel/fg-info/fg-info.component';
 import { SInfoComponent } from './admin/update-game/update-panel/s-info/s-info.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { SignInComponent } from './auth/sign-in/sign-in.component';
+import { SignUpComponent } from './auth/sign-up/sign-up.component';
+import { DataService } from './data.service';
 
 @NgModule({
   declarations: [
@@ -53,6 +56,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     TdInfoComponent,
     FgInfoComponent,
     SInfoComponent,
+    SignInComponent,
+    SignUpComponent,
   ],
   imports: [
     BrowserModule,
