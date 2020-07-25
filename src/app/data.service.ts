@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import * as firebase from 'firebase';
 
 @Injectable({
@@ -9,11 +9,11 @@ export class DataService {
 
   public games;
 
-  constructor(private db: AngularFirestore) {
+  constructor(private db: AngularFirestore,) {
     db.firestore.settings({
       ignoreUndefinedProperties: true,
     })
-   }
+  }
 
   public getGames(){
     console.log("retrieving games data...");
@@ -79,6 +79,23 @@ export class DataService {
       .collection("gameIncidents")
       .doc(game.payload.doc.id)
       .update({moments : firebase.firestore.FieldValue.arrayUnion(moment)});
-  }  
+  };
+
+  public isAdminApproved(uid : string) {
+    var docref = this.db.firestore.collection("users").doc(uid);
+    return docref.get().then((res) => {
+      return res.data().admin;
+    });
+  }
+
+  public addUserToCollection(res){
+    // Attempting to add user to database
+    const data = {
+      'email': res.user.email,
+      'admin': false
+    }
+    const userRef: AngularFirestoreDocument<any> = this.db.doc(`users/${res.user.uid}`);
+    return userRef.set(data, {merge: true})
+  }
   
 }

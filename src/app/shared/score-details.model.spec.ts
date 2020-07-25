@@ -1,7 +1,7 @@
-import { ScoreDetails } from './score-details.model';
+import { ScoreDetails.Model } from './score-details.model';
 
-describe('ScoreDetails', () => {
+describe('ScoreDetails.Model', () => {
   it('should create an instance', () => {
-    expect(new ScoreDetails()).toBeTruthy();
+    expect(new ScoreDetails.Model()).toBeTruthy();
   });
 });

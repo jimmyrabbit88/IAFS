@@ -1,0 +1,21 @@
+<h3>Register</h3>
+<div class="row justify-content-center">
+    <div class="col-6 align-self-center">
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput [(ngModel)]="email">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input type="password" matInput [(ngModel)]="password">
+        </mat-form-field>
+        <br>
+    </div>
+    <button class="btn btn-success w-100" (click)="register()">Register</button>
+</div>
+<div class="row">
+    <div class="col">
+        <p><a (click)="goToLog()">Click here</a> to sign in.</p>
+    </div>
+</div>
