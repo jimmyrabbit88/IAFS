@@ -4,7 +4,13 @@
             <app-title *ngFor="let game of games" [gameTitle]="game"></app-title>
         </div>
     </div>
-    <div class="row">
+    <div class="row" *ngIf="whatQ()==0">
+        <button class="btn btn-success" (click)="startGame()">Start Game</button>
+    </div>
+    <div class="row" *ngIf="whatQ()>=4">
+        <button class="btn btn-danger" (click)="endGame()">End of Game</button>
+    </div>
+    <div class="row" *ngIf="whatQ()!=0 && whatQ()!=-1">
         <div class="col">
             <h4>Moment Type:</h4>
             <mat-button-toggle-group name="type" aria-label="Font Style" #momentType="matButtonToggleGroup">
@@ -12,16 +18,8 @@
                 <mat-button-toggle value="end">End of Quarter</mat-button-toggle>
             </mat-button-toggle-group>
             <div *ngIf="momentType.value=='end'">
-                <mat-form-field>
-                    <mat-label>End Of</mat-label>
-                    <mat-select [(value)]="quarter">
-                        <mat-option value="1">Q1</mat-option>
-                        <mat-option value="2">Q2</mat-option>
-                        <mat-option value="3">Q3</mat-option>
-                        <mat-option value="4">Q4</mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <button class="ml-4" mat-flat-button color="primary">UPDATE</button>
+                <p>End Quarter {{ quarter }}, score is {{ getScore(1) }} : {{ getScore(0) }}</p>
+                <button class="ml-4" mat-flat-button color="primary" (click)="endQuarter()">UPDATE</button>
             </div>
             <div *ngIf="momentType.value=='score'">
             <br>

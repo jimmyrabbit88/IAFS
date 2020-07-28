@@ -1,23 +1,28 @@
 <div class="row my-2 mx-1 border-bottom border-light">
-    <div class="col-1">
-        <img *ngIf="detail.homeTeam==true" src="../../../../../assets/images/{{ home }}" alt="" width="20px" height="20px">
-        <img *ngIf="detail.homeTeam==false" src="../../../../../assets/images/{{ away }}" alt="" width="20px" height="20px">
-    </div> 
-    <div class="col">
-        <div class="row">
-            <div class="col">
-                {{ detail.scoreDetail }}
+    <div class="col quarterShade" *ngIf="detail.type=='Break'; else showScore">
+        {{ detail.name }}
+    </div>
+    <ng-template #showScore>  
+        <div class="col-1">
+            <img *ngIf="detail.homeTeam==true" src="../../../../../assets/images/{{ home }}" alt="" width="25px" height="25px">
+            <img *ngIf="detail.homeTeam==false" src="../../../../../assets/images/{{ away }}" alt="" width="25px" height="25px">
+        </div> 
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    {{ detail.scoreDetail }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col small-writing">
+                    {{ detail.statement }}
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col small-writing">
-                {{ detail.statement }}
-            </div>
+        <div class="col-2 col-auto p-0 text-center">
+            {{ detail.score }}
         </div>
-    </div>
-    <div class="col-2 col-auto">
-        {{ detail.score }}
-    </div>
+    </ng-template>
 </div>
 
 

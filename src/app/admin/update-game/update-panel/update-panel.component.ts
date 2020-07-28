@@ -26,7 +26,7 @@ export class UpdatePanelComponent implements OnInit {
   isHomeTeam: boolean;
   score: number;
   momentElement;
-  quarter: string;
+  quarter: number;
   newScore: string;
   
 
@@ -166,5 +166,57 @@ export class UpdatePanelComponent implements OnInit {
          break; 
       } 
    } 
+  }
+
+  public whatQ(){
+    (this.gameInc) ? this.quarter = this.gameInc.payload.doc.data().quarter : this.quarter = undefined;
+    return this.quarter;
+  }
+
+  public startGame(){
+    this.endQuarter();
+  }
+
+  public endGame(){
+    this.endQuarter();
+    this.ds.endGame(this.gameInc);
+  }
+
+  public endQuarter(){
+    const test = [
+      "First Quarter",
+      "Second Quarter ",
+      "Third Quarter",
+      "Fourth Quarter"
+    ]
+    const homeScore = this.getScore(0);
+    const awayScore = this.getScore(1);
+    const data = {
+      type : "Break",
+      name : test[this.quarter],
+      end : this.quarter,
+      homeScore : homeScore,
+      awayScore : awayScore,
+      time: firestore.Timestamp.now(),
+    }
+    this.ds.updateMoment(this.gameInc, Object.assign({}, data));
+    this.ds.nextQuarter(this.gameInc);
+  }
+
+  /**
+   * return the score of selected team pass in 1 for Away, 0 for Home team;
+   * 
+   * @param side 
+   */
+  public getScore(side: number){
+    if(side == 1){
+      return this.game.payload.doc.data().away.score;
+    }
+    else if(side == 0){
+      return this.game.payload.doc.data().home.score;
+    }
+    else{
+      return '';
+    }
   }
 }
