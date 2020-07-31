@@ -5,6 +5,8 @@ import { ScoreType } from 'src/app/shared/score-type.enum'
 import { firestore } from 'firebase';
 import { ScoreDetails } from 'src/app/shared/score-details.model';
 import { stringify } from 'querystring';
+import { MatButtonToggleGroup } from '@angular/material/button-toggle';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-update-panel',
@@ -65,6 +67,8 @@ export class UpdatePanelComponent implements OnInit {
       );
 
     this.ds.updateMoment(this.gameInc, Object.assign({}, momentElem));
+    this.resetFields();
+    
   }
 
   public onFgAdded(eventData){
@@ -97,6 +101,7 @@ export class UpdatePanelComponent implements OnInit {
       );
 
       this.ds.updateMoment(this.gameInc, Object.assign({}, momentElem));
+      this.resetFields();
   }
 
   public onSAdded(eventData){
@@ -113,7 +118,7 @@ export class UpdatePanelComponent implements OnInit {
       eventData.playerNum,
       eventData.distance,
       typeOfScore,
-      eventData.passer,
+      null,
       eventData.isMadeFg,
       this.xpMade,
       this.tptMade,
@@ -122,6 +127,7 @@ export class UpdatePanelComponent implements OnInit {
       );
 
       this.ds.updateMoment(this.gameInc, Object.assign({}, momentElem));
+      this.resetFields();
   }
 
   public addScore(isHomeTeam: boolean, score: number, gameId: string){
@@ -218,5 +224,11 @@ export class UpdatePanelComponent implements OnInit {
     else{
       return '';
     }
+  }
+
+  public resetFields(){
+    this.isHomeTeam = undefined;
+    this.xpMade = undefined;
+    this.tptMade = undefined;
   }
 }

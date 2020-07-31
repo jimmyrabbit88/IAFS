@@ -22,25 +22,26 @@
                 <button class="ml-4" mat-flat-button color="primary" (click)="endQuarter()">UPDATE</button>
             </div>
             <div *ngIf="momentType.value=='score'">
-            <br>
-            <h4>Team:</h4>
-            <mat-button-toggle-group name="homeAway" aria-label="Font Style" [(ngModel)]="isHomeTeam">
-                <mat-button-toggle [value]=false>Away</mat-button-toggle>
-                <mat-button-toggle [value]=true>Home</mat-button-toggle>
-            </mat-button-toggle-group>
-            <br>
-            <h4>Score:</h4>
-            <mat-button-toggle-group name="score" aria-label="Font Style" [(ngModel)]="score" #scoreType="matButtonToggleGroup">
-                <mat-button-toggle [value]=ScoreType.TD>Touchdown</mat-button-toggle>
-                <mat-button-toggle [value]=ScoreType.FG>Field Goal</mat-button-toggle>
-                <mat-button-toggle [value]=ScoreType.SAFETY>Safety</mat-button-toggle>
-            </mat-button-toggle-group>
-            <br>
-            <app-td-info *ngIf="scoreType.value == ScoreType.TD" (onTdDetailsAdded)="onTdAdded($event)"></app-td-info>
-            <app-fg-info *ngIf="scoreType.value == ScoreType.FG" (onFgDetailsAdded)="onFgAdded($event)"></app-fg-info>
-            <app-s-info *ngIf="scoreType.value == ScoreType.SAFETY" (onSDetailsAdded)="onSAdded($event)"></app-s-info>
-            <br>
-
+                <br>
+                <h4>Team:</h4>
+                <mat-button-toggle-group name="homeAway" aria-label="Font Style" [(ngModel)]="isHomeTeam">
+                    <mat-button-toggle [value]=false>Away</mat-button-toggle>
+                    <mat-button-toggle [value]=true>Home</mat-button-toggle>
+                </mat-button-toggle-group>
+                <br>
+            </div>
+            <div *ngIf="isHomeTeam != undefined">
+                <h4>Score:</h4>
+                <mat-button-toggle-group name="score" aria-label="Font Style" [(ngModel)]="score" #scoreType="matButtonToggleGroup">
+                    <mat-button-toggle [value]=ScoreType.TD>Touchdown</mat-button-toggle>
+                    <mat-button-toggle [value]=ScoreType.FG>Field Goal</mat-button-toggle>
+                    <mat-button-toggle [value]=ScoreType.SAFETY>Safety</mat-button-toggle>
+                </mat-button-toggle-group>
+                <br>
+                <app-td-info *ngIf="scoreType.value == ScoreType.TD" (onTdDetailsAdded)="onTdAdded($event)"></app-td-info>
+                <app-fg-info *ngIf="scoreType.value == ScoreType.FG" (onFgDetailsAdded)="onFgAdded($event)"></app-fg-info>
+                <app-s-info *ngIf="scoreType.value == ScoreType.SAFETY" (onSDetailsAdded)="onSAdded($event)"></app-s-info>
+                <br>
             </div>
         </div>
     </div>

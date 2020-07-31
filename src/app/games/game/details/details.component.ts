@@ -21,20 +21,20 @@ export class DetailsComponent implements OnInit {
     this.quarterDetails = this.details.moments.filter(detail => detail.type == "Break");
   }
 
-  getScore(ref: number){
+  getScore(ref: number) :number{
     var score = 0;
     (ref==1) ? score = this.game[0].payload.doc.data().away.score : score = this.game[0].payload.doc.data().home.score
     return score;
   }
   
-  getLogo(ref: number){
+  getLogo(ref: number) :number{
     var logo = 0;
     (ref==1) ? logo = this.game[0].payload.doc.data().away.logo : logo = this.game[0].payload.doc.data().home.logo
     return logo;
   }
   
-  getName(ref: number){
-    var name = 0;
+  getName(ref: number) :string{
+    var name = '';
     (ref==1) ? name = this.game[0].payload.doc.data().away.name : name = this.game[0].payload.doc.data().home.name
     return name;
   }
