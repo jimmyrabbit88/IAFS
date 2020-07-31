@@ -50,7 +50,8 @@ export class AddGameComponent implements OnInit {
       ko: time
     };
     this.gameIncidents = {
-      gameId: this.nextId
+      gameId: this.nextId,
+      quarter: 0
     }
     this.data.addGame(this.game);
     this.data.addGameIncidents(this.gameIncidents);
@@ -59,7 +60,7 @@ export class AddGameComponent implements OnInit {
 
   private generateGameId(){
     this.data.nextId().subscribe(res => {
-      const gameid:any = res.reduce((prev: any, current: any) => (prev.gameId > current.gameId) ? prev : current)
+      const gameid:any = res.reduce((prev: any, current: any) => (+prev.gameId > +current.gameId) ? prev : current);
       this.nextId = ((+gameid.gameId + 1).toString());
     });
   }

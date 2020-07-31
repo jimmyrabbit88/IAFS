@@ -97,5 +97,39 @@ export class DataService {
     const userRef: AngularFirestoreDocument<any> = this.db.doc(`users/${res.user.uid}`);
     return userRef.set(data, {merge: true})
   }
+
+  public nextQuarter(game){
+    console.log("Attempting to change to next quarter");
+    console.log(game.payload.doc.id)
+    this.db
+      .collection("gameIncidents")
+      .doc(game.payload.doc.id)
+      .update({"quarter" : firebase.firestore.FieldValue.increment(1)});
+  }
+
+  public endGame(game){
+    console.log("Setting game to be finished");
+    this.db
+      .collection("gameIncidents")
+      .doc(game.payload.doc.id)
+      .update({"quarter" : -1});
+    
+    //Update the final score for game information  
+    this.setFinalScore(game.payload.doc.data().gameId);
+  }
+
+  public setFinalScore(key){
+    console.log("Attempting to update Final score in ")
+     this.db
+      .collection("items", ref => ref.where('gameId', '==', key))
+      .get()
+      .subscribe((res) => {
+        this.db
+          .collection("items")
+          .doc(res.docs[0].id)
+          .set({"FinalScore" : res.docs[0].data().away.score + " : " + res.docs[0].data().home.score}, {merge : true});
+      })
+     
+  }
   
 }
