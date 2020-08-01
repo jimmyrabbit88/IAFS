@@ -1,0 +1,57 @@
+body{
+    background-color: #dff4cf;
+}
+.email-box{
+    border: 1px solid #666;
+    border-top-right-radius: 50px;
+    display: flex;
+    justify-content: center;
+
+}
+.password-box{
+    border: 1px solid #666;
+    border-bottom-right-radius: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.my-title{
+    font-size: 50px;
+    letter-spacing: .4rem;
+}
+
+.login-button-box{
+    display: flex;
+    align-items: center;
+    margin-left: -50px;;
+}
+
+.login-button{
+    border-radius: 50px;
+    height:40%;
+    padding-bottom: auto;
+    padding-top: auto;
+    background: #329d9c
+}
+.mat-icon{
+    vertical-align: middle;
+}
+.register-box{
+    cursor: pointer;
+    border: 1px solid #666;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.register-link{
+    display: flex;
+    align-items: center;
+}
+
+.forgot-p{
+    color: red;
+}
