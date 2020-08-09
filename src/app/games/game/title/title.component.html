@@ -1,33 +1,33 @@
-<div class="row game-header text-center p-1 title align-middle sticky-top" >
-    <div class="col">
+<div class="card text-center game-card mt-1 border-0">
+    <div class="card-body">
+        <h4 class="text-sch-darker">Shamrock bowl conference</h4>
         <div class="row">
-            <div class="col border-bottom bg-light">
-                Shamrock Bowl Conference
+            <div class="col-4">
+                <div class="row">
+                    <div class="col">
+                        <img src="../../assets/images/{{ game.away.logo }}" alt="" width="45" height="45">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        {{ game.away.name }}
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-2">
-                {{ game.away.name }}
-                <br>
-                <span class="record">(1-2)</span>
+            <div class="col-4 score align-middle">
+                {{ game.away.score }} : {{ game.home.score }}
             </div>
-            <div class="col-1">
-                <img src="../../../../assets/images/{{ game.away.logo }}" alt="" width="40" height="40">
-            </div>
-            <div class="col-1 score">
-                <span class="align-text-bottom">{{ game.away.score }}</span>
-            </div>
-            <div class="col-4 score">
-                <span class="align-text-bottom">:</span>
-            </div>
-            <div class="col-1 score">
-                <span class="align-text-bottom">{{ game.home.score }}</span>
-            </div>
-            <div class="col-1">
-                <img src="../../../../assets/images/{{ game.home.logo }}" alt="" width="40" height="40">
-            </div>
-            <div class="col-2">
-                {{ game.home.name }}
+            <div class="col-4 justify-content-center">
+                <div class="row">
+                    <div class="col">
+                        <img src="../../assets/images/{{ game.home.logo }}" alt="" width="45" height="45">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        {{ game.home.name }}
+                    </div>
+                </div>
             </div>
         </div>
     </div>

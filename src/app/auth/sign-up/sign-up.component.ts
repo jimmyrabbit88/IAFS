@@ -11,6 +11,8 @@ export class SignUpComponent implements OnInit {
 
   email: string;
   password: string;
+  confirmPassword: string;
+  passwordMatch: number = 0;
 
   constructor(
     public auth: AuthService,
@@ -22,7 +24,23 @@ export class SignUpComponent implements OnInit {
 
   register(){
     console.log("passing to auth Signup")
-    this.auth.SignUp(this.email, this.password)
+    this.passwordMatch = this.checkPasswords();
+    if(this.passwordMatch == 1){
+      this.auth.SignUp(this.email, this.password);
+    }
+  }
+
+  checkPasswords(): number{
+    if(this.password.length <= 6){
+      return 2;
+    }
+    else if(this.password === this.confirmPassword){
+      return 1;
+    }
+    else{
+      return 3;
+    }
+
   }
 
   goToLog(){

@@ -1,21 +1,21 @@
-<div class="row justify-content-center">
-    <div class="col-sm-12 col-lg-8">
-        <div class="row top-bar">
-            <div class="col-2">
-            <a routerLink="/home"><mat-icon class="backArrow">keyboard_backspace</mat-icon></a>
+<div class="bg-darker">
+    <div class="row justify-content-center">
+        <div class="col-sm-12 col-lg-8">
+            <div class="row top-bar ml-0">
+                <div class="col-2">
+                <a routerLink="/home"><mat-icon class="backArrow">keyboard_backspace</mat-icon></a>
+                </div>
+                <!-- add in league name and start date and time -->
             </div>
-            <!-- add in league name and start date and time -->
         </div>
-        <app-title *ngFor="let game of gameOverview" [gameTitle]="game"></app-title>
-
-        <!-- <div class="row justify-content-center px-4 pb-3 bg-white">
-            <div class="col"><a (click)="showDetails()">Details</a></div>
-            <div class="col"><a (click)="showStats()">Stats</a></div>
-            <div class="col text-center"><a (click)="showLineups()">Lineups</a></div>
-            <div class="col text-center"><a (click)="showSocial()">Social</a></div>
-            <div class="col justify-content-center"><a (click)="showStandings()">Standings</a></div>
-        </div> -->
-        <div class="mt-2">
+    </div>
+    <div class="row">
+        <div class="col mx-1">
+            <app-title *ngFor="let game of gameOverview" [gameTitle]="game"></app-title>
+        </div>
+    </div>
+    <div class="row selector-box mx-1 justify-content-center">
+        <div class="col-auto">
             <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
                 <mat-button-toggle #toggleDetails checked>Details</mat-button-toggle>
                 <mat-button-toggle #toggleStats>Stats</mat-button-toggle>
@@ -24,16 +24,19 @@
                 <mat-button-toggle #toggleStandings>Standings</mat-button-toggle>
             </mat-button-toggle-group>
         </div>
-
-        <div class="bg-white rounded">
+    </div>
+    <div class="row bg-lighter">
+        <div class="col-12 mt-2 rounded">
             <ng-container *ngIf="toggleDetails.checked">
                 <app-details *ngFor="let inc of gameIncidents" [gameDetails]="inc" [game]="gameOverview"></app-details>
             </ng-container>
         </div>
-        
+    </div>
+</div>       
+<!--        
         <app-stats *ngIf="toggleStats.checked"></app-stats>
         <app-lineups *ngIf="toggleLineups.checked"></app-lineups>
         <app-social *ngIf="toggleSocial.checked"></app-social>
-        <app-standings *ngIf="toggleStandings.checked"></app-standings>
-    </div>
-</div>
+        <app-standings *ngIf="toggleStandings.checked"></app-standings> -->
+    
+

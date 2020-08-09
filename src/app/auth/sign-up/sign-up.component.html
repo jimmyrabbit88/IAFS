@@ -1,21 +1,39 @@
-<h3>Register</h3>
-<div class="row justify-content-center">
-    <div class="col-6 align-self-center">
-        <mat-form-field>
-            <mat-label>Email</mat-label>
-            <input matInput [(ngModel)]="email">
-        </mat-form-field>
-        <br>
-        <mat-form-field>
-            <mat-label>Password</mat-label>
-            <input type="password" matInput [(ngModel)]="password">
-        </mat-form-field>
-        <br>
+<div class="row h-50 align-items-end">
+    <div class="col text-center">
+        <h1 class="my-title text-sch-darker font-weight-bold pb-5">Register</h1>
     </div>
-    <button class="btn btn-success w-100" (click)="register()">Register</button>
 </div>
 <div class="row">
-    <div class="col">
-        <p><a (click)="goToLog()">Click here</a> to sign in.</p>
+    <div class="col-8 align-self-center">
+        <div class="email-box">
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput [(ngModel)]="email">
+            </mat-form-field>
+        </div>
+        <div class="password-box" [ngClass]="{'pass-error': passwordMatch==2}">
+            <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input type="password" matInput [(ngModel)]="password">
+            </mat-form-field>
+        </div>
+        <div class="confirm-password-box" [ngClass]="{'conf-error': passwordMatch==3}">
+            <mat-form-field>
+                <mat-label>Confirm Password</mat-label>
+                <input type="password" matInput [(ngModel)]="confirmPassword">
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="col-4 reg-button-box">
+        <button class="btn reg-button" (click)="register()"><mat-icon>login</mat-icon></button>
+    </div>
+</div>
+<div class="row mt-4">
+    <div class="col-5">
+        <div class="login-box" (click)="goToLog()">
+            <div class="py-3 login-link text-sch-darker">
+                Login
+            </div>
+        </div>
     </div>
 </div>

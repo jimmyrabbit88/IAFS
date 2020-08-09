@@ -20,6 +20,11 @@ export class DataService {
     return this.db.collection("items").snapshotChanges();
   }
 
+  public getGamesWeek(from, to){
+    console.log("retrieving games data...");
+    return this.db.collection("items", ref => ref.where('ko', '>=', from).where('ko', '<', to)).snapshotChanges();
+  }
+
   public getGame(key){
     console.log("retrieving single game data...");
     return this.db.collection("items", ref => ref.where('gameId', '==', key)).snapshotChanges();
