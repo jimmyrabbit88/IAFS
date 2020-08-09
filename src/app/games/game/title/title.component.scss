@@ -3,12 +3,18 @@
     background-color: white;
 }
 .score{
-    min-height: inherit;
-    font-size: xx-large;
-    font-weight: 700;
+    font-size: 1.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .record{
     font-size: x-small;
+}
 
+.game-card{
+    background-color: #228195;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
 }

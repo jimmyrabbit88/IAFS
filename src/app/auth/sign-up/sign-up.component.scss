@@ -1,0 +1,67 @@
+body{
+    background-color: #dff4cf;
+}
+.email-box{
+    border: 1px solid #666;
+    border-top-right-radius: 50px;
+    display: flex;
+    justify-content: center;
+
+}
+.password-box{
+    border: 1px solid #666;
+    display: flex;
+    justify-content: center;
+}
+
+.pass-error{
+    border-color: red;
+}
+
+.confirm-password-box{
+    border: 1px solid #666;
+    border-bottom-right-radius: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.conf-error{
+    border-color: red;
+}
+
+.my-title{
+    font-size: 50px;
+    letter-spacing: .4rem;
+}
+
+.reg-button-box{
+    display: flex;
+    align-items: center;
+    margin-left: -50px;;
+}
+
+.reg-button{
+    border-radius: 50%;
+    height:3rem;
+    padding-bottom: auto;
+    padding-top: auto;
+    background: #329d9c
+}
+.mat-icon{
+    vertical-align: middle;
+}
+.login-box{
+    cursor: pointer;
+    border: 1px solid #666;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.login-link{
+    display: flex;
+    align-items: center;
+}
