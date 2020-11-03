@@ -22,7 +22,6 @@ export class TdInfoComponent implements OnInit {
   }
 
   public addScore(){
-    console.log('aa')
     this.onTdDetailsAdded.emit({tdType: this.tdType, player: this.player, playerNum: this.playerNum, passer: this.passer, distance: this.distance, ptAfter: this.ptAfter, ptaPlayer: this.ptaPlayer, ptaPlayerNum: this.ptaPlayerNum })
   }
 

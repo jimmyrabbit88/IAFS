@@ -22,7 +22,7 @@ export class UpdateGameComponent implements OnInit {
   }
 
   public updateAGame(game){
-    this.gameId = game.payload.doc.data().gameId;
+    this.gameId = game.gameId;
     this.selected = true;
   }
 }

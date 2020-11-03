@@ -15,27 +15,26 @@ export class DetailsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.details = this.gameDetails.payload.doc.data();
-    this.homeLogo = this.game[0].payload.doc.data().home.logo;
-    this.awayLogo = this.game[0].payload.doc.data().away.logo;
-    this.quarterDetails = this.details.moments.filter(detail => detail.type == "Break");
+    if(this.gameDetails.moments){
+      this.quarterDetails = this.gameDetails.moments.filter(detail => detail.type == "Break");
+    }
   }
 
   getScore(ref: number) :number{
     var score = 0;
-    (ref==1) ? score = this.game[0].payload.doc.data().away.score : score = this.game[0].payload.doc.data().home.score
+    (ref==1) ? score = this.game.away.score : score = this.game.home.score;
     return score;
   }
   
   getLogo(ref: number) :number{
     var logo = 0;
-    (ref==1) ? logo = this.game[0].payload.doc.data().away.logo : logo = this.game[0].payload.doc.data().home.logo
+    (ref==1) ? logo = this.game.away.logo : logo = this.game.home.logo
     return logo;
   }
   
   getName(ref: number) :string{
     var name = '';
-    (ref==1) ? name = this.game[0].payload.doc.data().away.name : name = this.game[0].payload.doc.data().home.name
+    (ref==1) ? name = this.game.away.name : name = this.game.home.name
     return name;
   }
 

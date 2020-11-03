@@ -1,37 +1,78 @@
-<div class="row" *ngIf="details.moments">
-  <div class="col summary px-3">
-    <h4>Scoring Summary</h4>
-    <div class="row">
-      <div class="col-2"></div>
-      <div class="col-4">Team</div>
-      <div class="col-1">1</div>
-      <div class="col-1">2</div>
-      <div class="col-1">3</div>
-      <div class="col-1">4</div>
-      <div class="col-1">T</div>
-    </div><div class="row border-top border-dark">
-      <div class="col-2"><img src="../../../../../assets/images/{{ getLogo(1) }}" alt="" width="20px" height="20px"></div>
-      <div class="col-4">{{ getName(1) }}</div>
-      <div class="col-1">{{ getEndQuarterScore(1, 1) }}</div>
-      <div class="col-1">{{ getEndQuarterScore(2, 1) }}</div>
-      <div class="col-1">{{ getEndQuarterScore(3, 1) }}</div>
-      <div class="col-1">{{ getEndQuarterScore(4, 1) }}</div>
-      <div class="col-1">{{ getScore(1) }}</div>
-    </div><div class="row border-top border-dark">
-      <div class="col-2"><img src="../../../../../assets/images/{{ getLogo(0) }}" alt="" width="20px" height="20px"></div>
-      <div class="col-4">{{ getName(0) }}</div>
-      <div class="col-1">{{ getEndQuarterScore(1, 0) }}</div>
-      <div class="col-1">{{ getEndQuarterScore(2, 0) }}</div>
-      <div class="col-1">{{ getEndQuarterScore(3, 0) }}</div>
-      <div class="col-1">{{ getEndQuarterScore(4, 0) }}</div>
-      <div class="col-1">{{ getScore(0) }}</div>
+<div class="row m-0 justify-content-center">
+  <div class="col">
+    <div class="card text-center" *ngIf="gameDetails.moments">
+      <div class="card-header">
+        Scoring Summary
+      </div>
+      <div class="card-body font-small">
+        <div class="row">
+          <div class="col-2 no-pad"></div>
+          <div class="col-4 no-pad">Team</div>
+          <div class="col-1 no-pad">1</div>
+          <div class="col-1 no-pad">2</div>
+          <div class="col-1 no-pad">3</div>
+          <div class="col-1 no-pad">4</div>
+          <div class="col-2 no-pad">T</div>
+        </div><div class="row border-top border-dark">
+          <div class="col-2 no-pad"><img src="../../../../../assets/images/{{ getLogo(1) }}" alt="" width="20px" height="20px"></div>
+          <div class="col-4 no-pad">{{ getName(1) }}</div>
+          <div class="col-1 no-pad">{{ getEndQuarterScore(1, 1) }}</div>
+          <div class="col-1 no-pad">{{ getEndQuarterScore(2, 1) }}</div>
+          <div class="col-1 no-pad">{{ getEndQuarterScore(3, 1) }}</div>
+          <div class="col-1 no-pad">{{ getEndQuarterScore(4, 1) }}</div>
+          <div class="col-2 no-pad">{{ getScore(1) }}</div>
+        </div><div class="row border-top border-dark">
+          <div class="col-2 no-pad"><img src="../../../../../assets/images/{{ getLogo(0) }}" alt="" width="20px" height="20px"></div>
+          <div class="col-4 no-pad">{{ getName(0) }}</div>
+          <div class="col-1 no-pad">{{ getEndQuarterScore(1, 0) }}</div>
+          <div class="col-1 no-pad">{{ getEndQuarterScore(2, 0) }}</div>
+          <div class="col-1 no-pad">{{ getEndQuarterScore(3, 0) }}</div>
+          <div class="col-1 no-pad">{{ getEndQuarterScore(4, 0) }}</div>
+          <div class="col-2 no-pad">{{ getScore(0) }}</div>
+        </div>
+      </div>
     </div>
+    <div class="card mt-3" *ngIf="gameDetails.moments">
+      <div class="card-header text-center">
+        Scoring Breakdown
+      </div>
+      <div class="card-body font-small">
+        <div *ngFor="let detail of gameDetails.moments">
+          <app-detail [detail]="detail" [home]="game.home.logo" [away]="game.away.logo"></app-detail>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mt-3">
+      <div class="card-header text-center">
+        Recent Matches
+      </div>
+      <div class="card-body font-small">
+        <app-recent-matches *ngIf="game" [game]="game"></app-recent-matches>
+      </div>
+    </div>
+
+    <div class="card mt-3">
+      <div class="card-header text-center">
+        Head to Head
+      </div>
+      <div class="card-body font-small">
+        head-to-head
+      </div>
+    </div>
+
+    <div class="card mt-3">
+      <div class="card-header text-center">
+        Game Predictions
+      </div>
+      <div class="card-body font-small">
+        game-prdictions
+      </div>
+    </div>
+
   </div>
 </div>
 
-<div *ngFor="let detail of details.moments">
-    <app-detail [detail]="detail" [home]="homeLogo" [away]="awayLogo"></app-detail>
-</div>
 
 <!-- <p>
     {{ detail.quarter }} 

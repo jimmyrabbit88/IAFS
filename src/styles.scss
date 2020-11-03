@@ -10,6 +10,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   color: #205072;
 }
 
+.bg-darkest{
+  background-color: #205072;
+
+}
+
 .bg-darker{
   background: #228195;
 }
@@ -20,4 +25,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .font-larger{
   font-size: 1.3rem;
+}
+
+.font-small{
+  font-size: .75rem;
+}
+
+.no-pad{
+  padding: 0 !important;
+  margin: 0 !important;
 }

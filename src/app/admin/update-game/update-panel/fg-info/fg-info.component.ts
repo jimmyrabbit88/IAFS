@@ -19,7 +19,6 @@ export class FgInfoComponent implements OnInit {
   }
 
   public addScore(){
-    console.log('aa')
     this.onFgDetailsAdded.emit({player: this.player, playerNum: this.playerNum, distance: this.distance, isMadeFg: this.isMadeFg })
   }
 

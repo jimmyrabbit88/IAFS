@@ -19,7 +19,6 @@ export class SInfoComponent implements OnInit {
   }
 
   public addScore(){
-    console.log('aa')
     this.onSDetailsAdded.emit({player: this.player, playerNum: this.playerNum})
   }
 

@@ -36,11 +36,11 @@ export class UpdatePanelComponent implements OnInit {
 
   ngOnInit(): void {
     this.ds.getGame(this.gameId).subscribe(gameResult => {
-      this.game = gameResult[0];
-      this.games = gameResult;
+      this.game = gameResult;
+      //this.games = gameResult;
     })
     this.ds.getGameIncidents(this.gameId).subscribe(gameIncResults => {
-      this.gameInc = gameIncResults[0];
+      this.gameInc = gameIncResults;
     })
   }
 
@@ -131,14 +131,15 @@ export class UpdatePanelComponent implements OnInit {
   }
 
   public addScore(isHomeTeam: boolean, score: number, gameId: string){
+    console.log(this.game);
     this.ds.updateScore(isHomeTeam, score, this.game);
     this.getNewScoreString(isHomeTeam, score)
 
   }
 
   public getNewScoreString(isHomeTeam: boolean, score: number){
-    let away = this.game.payload.doc.data().away.score;
-    let home = this.game.payload.doc.data().home.score;
+    let away = this.game.away.score;
+    let home = this.game.home.score;
     if(isHomeTeam){
       home = home + score;
     }
@@ -175,7 +176,7 @@ export class UpdatePanelComponent implements OnInit {
   }
 
   public whatQ(){
-    (this.gameInc) ? this.quarter = this.gameInc.payload.doc.data().quarter : this.quarter = undefined;
+    (this.gameInc) ? this.quarter = this.gameInc.quarter : this.quarter = undefined;
     return this.quarter;
   }
 
@@ -205,6 +206,7 @@ export class UpdatePanelComponent implements OnInit {
       awayScore : awayScore,
       time: firestore.Timestamp.now(),
     }
+    console.log(this.gameInc)
     this.ds.updateMoment(this.gameInc, Object.assign({}, data));
     this.ds.nextQuarter(this.gameInc);
   }
@@ -216,10 +218,10 @@ export class UpdatePanelComponent implements OnInit {
    */
   public getScore(side: number){
     if(side == 1){
-      return this.game.payload.doc.data().away.score;
+      return this.game.away.score;
     }
     else if(side == 0){
-      return this.game.payload.doc.data().home.score;
+      return this.game.home.score;
     }
     else{
       return '';

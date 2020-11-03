@@ -34,6 +34,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { SignInComponent } from './auth/sign-in/sign-in.component';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { DataService } from './data.service';
+import { RecentMatchesComponent } from './games/game/details/recent-matches/recent-matches.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { DataService } from './data.service';
     SInfoComponent,
     SignInComponent,
     SignUpComponent,
+    RecentMatchesComponent,
   ],
   imports: [
     BrowserModule,

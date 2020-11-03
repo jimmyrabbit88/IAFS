@@ -30,10 +30,13 @@ export class GameComponent implements OnInit {
   }
 
   public getGameOverview(){
-    this.dataService.getGame(this.gameId).subscribe(res => (this.gameOverview = res));
+    this.dataService.getGame(this.gameId).subscribe(res => {
+      this.gameOverview = res;
+    });
   }
 
   public getGameIncidents(){
-    this.dataService.getGameIncidents(this.gameId).subscribe(res => (this.gameIncidents = res));
+    this.dataService.getGameIncidents(this.gameId).subscribe(res => {
+      this.gameIncidents = res});
   }
 }
