@@ -1,5 +1,5 @@
 <div class="bg-darker">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center bg-darker">
         <div class="col-sm-12 col-lg-8">
             <div class="row top-bar ml-0">
                 <div class="col-2">
@@ -9,12 +9,12 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col mx-1">
-            <app-title *ngFor="let game of gameOverview" [gameTitle]="game"></app-title>
+    <div class="row bg-darker justify-content-center">
+        <div class="col col-lg-10 mx-1">
+            <app-title *ngIf="gameOverview" [game]="gameOverview"></app-title>
         </div>
     </div>
-    <div class="row selector-box mx-1 justify-content-center">
+    <div class="row selector-box justify-content-center bg-darker">
         <div class="col-auto">
             <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
                 <mat-button-toggle #toggleDetails checked>Details</mat-button-toggle>
@@ -25,10 +25,10 @@
             </mat-button-toggle-group>
         </div>
     </div>
-    <div class="row bg-lighter">
-        <div class="col-12 mt-2 rounded">
+    <div class="row bg-light justify-content-center">
+        <div class="col-12 col-lg-8 p-1 mt-2 rounded justify-content-center">
             <ng-container *ngIf="toggleDetails.checked">
-                <app-details *ngFor="let inc of gameIncidents" [gameDetails]="inc" [game]="gameOverview"></app-details>
+                <app-details *ngIf="gameIncidents" [gameDetails]="gameIncidents" [game]="gameOverview"></app-details>
             </ng-container>
         </div>
     </div>

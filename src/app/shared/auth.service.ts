@@ -43,9 +43,7 @@ export class AuthService {
     console.log('attempting to log in')
     return this.fireAuth.auth.signInWithEmailAndPassword(email, password)
     .then((res) => {
-      console.log("a")
       this.router.navigate(['home']);
-      console.log("z")
     })
   }
 

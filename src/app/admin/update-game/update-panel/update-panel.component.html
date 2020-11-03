@@ -1,7 +1,7 @@
 <div class="container mt-2">
     <div class="row">
         <div class="col">
-            <app-title *ngFor="let game of games" [gameTitle]="game"></app-title>
+            <app-title *ngIf="game" [game]="game"></app-title>
         </div>
     </div>
     <div class="row" *ngIf="whatQ()==0">

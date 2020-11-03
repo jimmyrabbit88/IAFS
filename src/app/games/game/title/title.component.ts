@@ -6,12 +6,11 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./title.component.scss']
 })
 export class TitleComponent implements OnInit {
-  @Input() gameTitle: any;
-  game;
+  @Input() game: any;
+
   constructor() { }
 
   ngOnInit(): void {
-    this.game = this.gameTitle.payload.doc.data();
   }
 
 }

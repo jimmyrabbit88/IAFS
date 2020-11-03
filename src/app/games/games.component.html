@@ -12,32 +12,32 @@
             (click)="selectAGame(game)">
                 <div class="card text-center game-card" style="width: 95%;">
                     <div class="card-body">
-                        <h4 class="text-sch-darker">{{ game.payload.doc.data().ko.toDate() | date: 'MMM dd HH:mm' }}</h4>
+                        <h4 class="text-sch-darker">{{ game.ko.toDate() | date: 'MMM dd HH:mm' }}</h4>
                         <div class="row">
                             <div class="col-4">
                                 <div class="row">
                                     <div class="col">
-                                        <img src="../../assets/images/{{ game.payload.doc.data().away.logo }}" alt="" width="45" height="45">
+                                        <img src="../../assets/images/{{ game.away.logo }}" alt="" width="45" height="45">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        {{ game.payload.doc.data().away.name }}
+                                        {{ game.away.name }}
                                     </div>
                                 </div>
                             </div>
                             <div class="col-4 score align-middle">
-                                {{ game.payload.doc.data().away.score }} : {{ game.payload.doc.data().home.score }}
+                                {{ game.away.score }} : {{ game.home.score }}
                             </div>
                             <div class="col-4 justify-content-center">
                                 <div class="row">
                                     <div class="col">
-                                        <img src="../../assets/images/{{ game.payload.doc.data().home.logo }}" alt="" width="45" height="45">
+                                        <img src="../../assets/images/{{ game.home.logo }}" alt="" width="45" height="45">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        {{ game.payload.doc.data().home.name }}
+                                        {{ game.home.name }}
                                     </div>
                                 </div>
                             </div>

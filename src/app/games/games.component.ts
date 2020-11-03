@@ -25,7 +25,6 @@ export class GamesComponent implements OnInit, OnDestroy{
   ngOnInit(): void {
     this.setDates();
     this.getGames();
-    console.log(this.dateTo);
   }
 
   public setDates(){
@@ -40,11 +39,10 @@ export class GamesComponent implements OnInit, OnDestroy{
 
   public getGames(){
     this.allGamesSub = this.dataService.getGamesWeek(this.dateFrom, this.dateTo).subscribe(res => (this.games = res));
-    console.log(this.dateTo);
   }
   
   public selectAGame(game) {
-    this.router.navigate(['/','game', game.payload.doc.data().gameId]);
+    this.router.navigate(['/','game', game.gameId]);
   }
 
   public nextWeek(){

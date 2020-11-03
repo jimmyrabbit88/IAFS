@@ -15,16 +15,7 @@ export class AddGameComponent implements OnInit {
   location: string ='';
   ko: Date;
   localCompleteDate: string;
-  teams: Array<{name: string, logo: string}> = [
-    {name: "Cork Admirals", logo: "admirals.png"},
-    {name: "Belfast Trojans", logo: "trojans.png"},
-    {name: "CarrickFergus Knights", logo: "knights.png"},
-    {name: "UCD", logo: "ucd.png"},
-    {name: "Dublin Panthers", logo: "panthers.png"},
-    {name: "UL Vikings", logo: "vikings.png"},
-    {name: "Dublin Rebels", logo: "rebels.png"},
-    {name: "Dublin Rhinos", logo: "rhinos.png"},
-  ];
+  teams = [];
   private game;
   private gameIncidents;
 
@@ -35,6 +26,9 @@ export class AddGameComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.data.getTeams().subscribe((res)=>{
+      this.teams = res;
+    })
     this.generateGameId();
   }
 
@@ -44,15 +38,17 @@ export class AddGameComponent implements OnInit {
     const time = firestore.Timestamp.fromDate(new Date(this.localCompleteDate));
     this.game = {
       gameId: this.nextId,
-      away: {name: away.name, score: 0, logo: away.logo},
-      home: {name: home.name, score: 0, logo: home.logo},
+      away: {name: away.name, score: 0, logo: away.logo, id: away.id},
+      home: {name: home.name, score: 0, logo: home.logo, id: home.id},
       location: this.location,
-      ko: time
+      ko: time,
+      teams: [away.id, home.id]
     };
     this.gameIncidents = {
       gameId: this.nextId,
       quarter: 0
     }
+
     this.data.addGame(this.game);
     this.data.addGameIncidents(this.gameIncidents);
     this.router.navigate(['/']);
@@ -60,8 +56,9 @@ export class AddGameComponent implements OnInit {
 
   private generateGameId(){
     this.data.nextId().subscribe(res => {
-      const gameid:any = res.reduce((prev: any, current: any) => (+prev.gameId > +current.gameId) ? prev : current);
-      this.nextId = ((+gameid.gameId + 1).toString());
+      this.nextId = res.toString();
+      // const gameid:any = res.reduce((prev: any, current: any) => (+prev.gameId > +current.gameId) ? prev : current);
+      // this.nextId = ((+gameid.gameId + 1).toString());
     });
   }
 

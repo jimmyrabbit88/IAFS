@@ -66,7 +66,6 @@ export class ScoreDetails {
         }
         this.xpmade? str += (" (" + this.ptaPlayer + " kick) "): str += '';
         this.xpmade==false? str += "(xp failed)": str += '';
-        console.log(str)
         return str;
     }
 }
